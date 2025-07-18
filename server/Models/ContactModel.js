@@ -11,7 +11,7 @@ const contactSchema = new mongoose.Schema({
       'web',
       'mobile',
       'accounting',
-      'oracle-ebs',
+      'digital-marketing',
       'oracle-db'
     ]
   },

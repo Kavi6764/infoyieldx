@@ -2,40 +2,41 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Parallax } from "react-scroll-parallax";
 import Lottie from "lottie-react";
-import EBS from "../assets/Ebs.json";
-import { Settings, Puzzle, UploadCloud, ShieldCheck } from "lucide-react";
+import MarketingAnimation from "../assets/Ai.json";
+import { LineChart, Megaphone, TrendingUp, Globe2 } from "lucide-react";
 
-const ebsServices = [
+const digitalMarketingServices = [
   {
-    title: "Implementation & Deployment",
+    title: "SEO Optimization",
     description:
-      "End-to-end Oracle EBS implementation tailored to your business processes, including system configuration and data migration.",
-    icon: <Settings className="w-8 h-8 text-purple-700" />,
+      "Boost your website's visibility on search engines through keyword targeting, technical SEO, and on-page strategies.",
+    icon: <TrendingUp className="w-8 h-8 text-purple-700" />,
   },
   {
-    title: "Customization & Integration",
+    title: "Social Media Marketing",
     description:
-      "Enhance EBS capabilities with custom modules and seamless integration with third-party systems like SAP, Salesforce, or in-house apps.",
-    icon: <Puzzle className="w-8 h-8 text-purple-700" />,
+      "Grow your brand on platforms like Instagram, Facebook, and LinkedIn with targeted content and audience engagement.",
+    icon: <Megaphone className="w-8 h-8 text-purple-700" />,
   },
   {
-    title: "Upgrade & Migration",
+    title: "Content Strategy",
     description:
-      "Smooth upgrade paths from earlier Oracle EBS versions to the latest release, with minimal downtime and full data integrity.",
-    icon: <UploadCloud className="w-8 h-8 text-purple-700" />,
+      "Create impactful content marketing campaigns that attract, engage, and convert your audience effectively.",
+    icon: <LineChart className="w-8 h-8 text-purple-700" />,
   },
   {
-    title: "Managed Support Services",
+    title: "PPC & Paid Advertising",
     description:
-      "24/7 monitoring, troubleshooting, and user support to ensure your Oracle EBS environment remains stable and optimized.",
-    icon: <ShieldCheck className="w-8 h-8 text-purple-700" />,
+      "Maximize ROI with paid ad campaigns on Google, Facebook, and more—backed by continuous performance analysis.",
+    icon: <Globe2 className="w-8 h-8 text-purple-700" />,
   },
 ];
 
-const OracleEBS = () => {
+const DigitalMarketing = () => {
   return (
     <div className="bg-[#F4ecfe]/20">
       <div className="max-w-7xl mx-auto py-10">
+
         {/* Hero Section */}
         <motion.section
           className="py-16 text-center"
@@ -54,7 +55,7 @@ const OracleEBS = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Oracle E-Business Suite Services
+            Digital Marketing Services
           </motion.h1>
 
           <motion.p
@@ -63,18 +64,18 @@ const OracleEBS = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Unlock enterprise productivity with our Oracle EBS solutions—from implementation to support.
+            Elevate your brand's online presence with data-driven marketing solutions tailored to your audience.
           </motion.p>
         </motion.section>
 
-        {/* Services */}
+        {/* Services Section */}
         <motion.h2
           className="text-2xl font-semibold text-center mb-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Our EBS Expertise
+          What We Offer
         </motion.h2>
 
         <section className="py-16 px-6 md:px-20 grid grid-cols-1 md:grid-cols-2 items-center gap-10">
@@ -84,7 +85,7 @@ const OracleEBS = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            {ebsServices.map((service, index) => (
+            {digitalMarketingServices.map((service, index) => (
               <motion.div
                 key={index}
                 className="bg-gray-200 p-6 rounded-xl shadow hover:shadow-xl transition-all duration-300 text-center"
@@ -107,7 +108,7 @@ const OracleEBS = () => {
               transition={{ duration: 1, ease: "easeOut" }}
               whileHover={{ rotate: 2, scale: 1.05 }}
             >
-              <Lottie animationData={EBS} />
+              <Lottie animationData={MarketingAnimation} />
             </motion.div>
           </Parallax>
         </section>
@@ -125,7 +126,7 @@ const OracleEBS = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            Need Help With Oracle EBS?
+            Ready to Grow Your Business Online?
           </motion.h2>
           <motion.p
             className="mb-6"
@@ -133,7 +134,7 @@ const OracleEBS = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            Let our certified Oracle consultants modernize and support your EBS environment.
+            Connect with our digital experts for personalized marketing strategies that deliver results.
           </motion.p>
           <motion.a
             href="/contact"
@@ -141,7 +142,7 @@ const OracleEBS = () => {
             whileTap={{ scale: 0.95 }}
           >
             <button className="px-6 py-3 bg-purple-700 text-white rounded hover:bg-purple-800 transition-colors duration-300">
-              Schedule a Consultation
+              Request a Marketing Audit
             </button>
           </motion.a>
         </motion.section>
@@ -150,4 +151,4 @@ const OracleEBS = () => {
   );
 };
 
-export default OracleEBS;
+export default DigitalMarketing;

@@ -21,15 +21,15 @@ const stats = [
     icon: <CheckCircle className="h-6 w-6 text-green-600" />,
     iconBg: "bg-green-100",
   },
-  {
-    label: "PTO Balance",
-    value: "18.5",
-    subText: "Days remaining",
-    subIcon: <Calendar className="h-3 w-3 mr-1" />,
-    subColor: "text-gray-600",
-    icon: <Calendar className="h-6 w-6 text-purple-600" />,
-    iconBg: "bg-purple-100",
-  },
+  // {
+  //   label: "PTO Balance",
+  //   value: "18.5",
+  //   subText: "Days remaining",
+  //   subIcon: <Calendar className="h-3 w-3 mr-1" />,
+  //   subColor: "text-gray-600",
+  //   icon: <Calendar className="h-6 w-6 text-purple-600" />,
+  //   iconBg: "bg-purple-100",
+  // },
   {
     label: "Performance",
     value: "92%",
@@ -44,7 +44,7 @@ const stats = [
 const QuickStats = () => {
   return (
     <div className="p-6 space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {stats.map((stat, index) => (
           <div
             key={index}

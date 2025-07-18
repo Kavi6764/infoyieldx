@@ -40,6 +40,12 @@ const employeeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+ leaveBalance: {
+  sick: { type: Number, default: 10 },
+  casual: { type: Number, default: 20 },
+  earned: { type: Number, default: 15 },
+  unpaid: { type: Number, default: 0 }
+},
   // ✅ Newly added fields
   dateOfBirth: Date,
   address: String,

@@ -58,7 +58,7 @@ const CompanyCulture = () => {
 
         {/* Stats Section */}
         <div className="bg-white rounded-lg p-8 shadow-xl">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
+          <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
               <div className="text-3xl font-bold text-blue-600 mb-2">150+</div>
               <div className="text-gray-600">Team Members</div>
@@ -71,10 +71,10 @@ const CompanyCulture = () => {
               <div className="text-3xl font-bold text-blue-600 mb-2">98%</div>
               <div className="text-gray-600">Employee Satisfaction</div>
             </div>
-            <div>
+            {/* <div>
               <div className="text-3xl font-bold text-blue-600 mb-2">4.8</div>
               <div className="text-gray-600">Glassdoor Rating</div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

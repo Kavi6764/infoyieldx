@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import { Mail, Lock } from "lucide-react";
+import React, { useContext, useState } from "react";
+import { Mail, Lock, User } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Appcontext } from "../Context/Context";
 
 const EmployeeLogin = () => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const {setEmptoken,setEmpId} = useContext(Appcontext)
+  const [formData, setFormData] = useState({ employeeId: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -16,7 +18,8 @@ const EmployeeLogin = () => {
   const handleSubmit = async () => {
     try {
       const res = await axios.post("http://localhost:5000/api/employee/login", formData);
-      localStorage.setItem("empToken", res.data.token);
+      setEmptoken(res.data.token)
+      setEmpId(res.data.id)
       navigate("/employee");
     } catch (err) {
       setError("Invalid email or password");
@@ -28,13 +31,13 @@ const EmployeeLogin = () => {
       <h2 className="text-xl font-bold mb-6 text-center">Employee Login</h2>
 
       <div className="relative mb-4">
-        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+        <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
         <input
-          type="email"
-          name="email"
-          value={formData.email}
+          type="text"
+          name="employeeId"
+          value={formData.employeeId}
           onChange={handleChange}
-          placeholder="Email"
+          placeholder="Employee ID"
           className="pl-10 border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>

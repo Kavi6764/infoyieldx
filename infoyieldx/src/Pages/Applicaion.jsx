@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import axios from "axios";
+ 
 const Application = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -20,33 +21,79 @@ const Application = () => {
     experience: "",
     resume: null,
   });
-
+ 
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [loading, setLoading] = useState(false);
+ 
   const updateFormData = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
-    console.log("Formdata",formData)
   };
-
+ 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    setSuccess(null);
+    setLoading(true);
+ 
+    const data = new FormData();
+    Object.entries(formData).forEach(([key, value]) => {
+      if (key === "skills") {
+        data.append(key, JSON.stringify(value));
+      } else if (key === "resume" && value) {
+        data.append(key, value);
+      } else {
+        data.append(key, value);
+      }
+    });
+ 
+    try {
+     const response = await axios.post("http://localhost:5000/api/carrer-portal/apply", data, {
+  headers: { "Content-Type": "multipart/form-data" },
+}
+ 
+      );
+      setSuccess(response.data.message || "Application submitted successfully!");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        dob: "",
+        gender: "",
+        position: "",
+        degree: "",
+        university: "",
+        graduationYear: "",
+        coverLetter: "",
+        skills: [],
+        currentSalary: "",
+        expectedSalary: "",
+        availability: "",
+        experience: "",
+        resume: null,
+      });
+    } catch (err) {
+      console.error("Submission error:", err);
+      setError(err.response?.data?.error || "Failed to submit application.");
+    } finally {
+      setLoading(false);
+    }
+  };
+ 
   return (
-    <div className="p-6 max-w-4xl mx-auto space-y-10">
+    <form onSubmit={handleSubmit} className="p-6 max-w-4xl mx-auto space-y-10">
       <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">
-          Job Application
-        </h1>
-        <p className="text-lg text-gray-600">
-          Join our team and make a difference
-        </p>
+        <h1 className="text-4xl font-bold text-gray-900 mb-2">Job Application</h1>
+        <p className="text-lg text-gray-600">Join our team and make a difference</p>
       </div>
-
-      {/* ✅ Personal Information */}
+ 
+      {/* Personal Information */}
       <div>
-        <h2 className="text-2xl font-semibold text-blue-800 mb-4">
-          Personal Information
-        </h2>
+        <h2 className="text-2xl font-semibold text-blue-800 mb-4">Personal Information</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="text-sm font-medium text-gray-700">
-              First Name *
-            </label>
+            <label className="text-sm font-medium text-gray-700">First Name *</label>
             <input
               type="text"
               value={formData.firstName}
@@ -56,9 +103,7 @@ const Application = () => {
             />
           </div>
           <div>
-            <label className="text-sm font-medium text-gray-700">
-              Last Name *
-            </label>
+            <label className="text-sm font-medium text-gray-700">Last Name *</label>
             <input
               type="text"
               value={formData.lastName}
@@ -88,9 +133,7 @@ const Application = () => {
             />
           </div>
           <div>
-            <label className="text-sm font-medium text-gray-700">
-              Date of Birth
-            </label>
+            <label className="text-sm font-medium text-gray-700">Date of Birth</label>
             <input
               type="date"
               value={formData.dob}
@@ -113,15 +156,13 @@ const Application = () => {
           </div>
         </div>
       </div>
-
-      {/* 🎓 Education Section */}
+ 
+      {/* Education Section */}
       <div>
         <h2 className="text-2xl font-semibold text-blue-800 mb-4">Education</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="text-sm font-medium text-gray-700">
-              Highest Degree
-            </label>
+            <label className="text-sm font-medium text-gray-700">Highest Degree</label>
             <input
               type="text"
               value={formData.degree}
@@ -131,9 +172,7 @@ const Application = () => {
             />
           </div>
           <div>
-            <label className="text-sm font-medium text-gray-700">
-              University
-            </label>
+            <label className="text-sm font-medium text-gray-700">University</label>
             <input
               type="text"
               value={formData.university}
@@ -143,9 +182,7 @@ const Application = () => {
             />
           </div>
           <div>
-            <label className="text-sm font-medium text-gray-700">
-              Graduation Year
-            </label>
+            <label className="text-sm font-medium text-gray-700">Graduation Year</label>
             <input
               type="number"
               value={formData.graduationYear}
@@ -156,16 +193,13 @@ const Application = () => {
           </div>
         </div>
       </div>
-      {/* 💼 Professional Information */}
+ 
+      {/* Professional Information */}
       <div>
-        <h2 className="text-2xl font-semibold text-blue-800 mb-4">
-          Professional Information
-        </h2>
+        <h2 className="text-2xl font-semibold text-blue-800 mb-4">Professional Information</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="text-sm font-medium text-gray-700">
-              Position Applied For *
-            </label>
+            <label className="text-sm font-medium text-gray-700">Position Applied For *</label>
             <input
               type="text"
               value={formData.position}
@@ -175,11 +209,8 @@ const Application = () => {
               required
             />
           </div>
-
           <div>
-            <label className="text-sm font-medium text-gray-700">
-              Years of Experience *
-            </label>
+            <label className="text-sm font-medium text-gray-700">Years of Experience *</label>
             <select
               value={formData.experience}
               onChange={(e) => updateFormData("experience", e.target.value)}
@@ -194,11 +225,8 @@ const Application = () => {
               <option value="10+">10+ years</option>
             </select>
           </div>
-
           <div>
-            <label className="text-sm font-medium text-gray-700">
-              Current Salary
-            </label>
+            <label className="text-sm font-medium text-gray-700">Current Salary</label>
             <input
               type="text"
               value={formData.currentSalary}
@@ -207,11 +235,8 @@ const Application = () => {
               placeholder="e.g., ₹500,000"
             />
           </div>
-
           <div>
-            <label className="text-sm font-medium text-gray-700">
-              Expected Salary *
-            </label>
+            <label className="text-sm font-medium text-gray-700">Expected Salary *</label>
             <input
               type="text"
               value={formData.expectedSalary}
@@ -221,11 +246,8 @@ const Application = () => {
               required
             />
           </div>
-
           <div className="md:col-span-2">
-            <label className="text-sm font-medium text-gray-700">
-              Availability *
-            </label>
+            <label className="text-sm font-medium text-gray-700">Availability *</label>
             <select
               value={formData.availability}
               onChange={(e) => updateFormData("availability", e.target.value)}
@@ -242,49 +264,35 @@ const Application = () => {
           </div>
         </div>
       </div>
-      {/*Application Details*/}
+ 
+      {/* Application Details */}
       <div>
-        <h2 className="text-2xl font-semibold text-blue-800 mb-4">
-          Application Details
-        </h2>
+        <h2 className="text-2xl font-semibold text-blue-800 mb-4">Application Details</h2>
         <div>
-          <h2 className=" text-gray-800 mb-4">Skills</h2>
-          <div className="flex gap-2">
-            <input
-              type="text"
-              placeholder="Enter a skill and press Enter"
-              className="w-full border border-gray-300 rounded p-2"
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && e.target.value.trim()) {
-                  e.preventDefault();
-                  if (!formData.skills.includes(e.target.value.trim())) {
-                    updateFormData("skills", [
-                      ...formData.skills,
-                      e.target.value.trim(),
-                    ]);
-                  }
-                  e.target.value = "";
+          <h3 className="text-gray-800 mb-4">Skills</h3>
+          <input
+            type="text"
+            placeholder="Enter a skill and press Enter"
+            className="w-full border border-gray-300 rounded p-2"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && e.target.value.trim()) {
+                e.preventDefault();
+                if (!formData.skills.includes(e.target.value.trim())) {
+                  updateFormData("skills", [...formData.skills, e.target.value.trim()]);
                 }
-              }}
-            />
-          </div>
-
-          {/* Show skills as tags */}
+                e.target.value = "";
+              }
+            }}
+          />
           <div className="mt-3 flex flex-wrap gap-2">
             {formData.skills.map((skill, idx) => (
-              <span
-                key={idx}
-                className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
-              >
+              <span key={idx} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
                 {skill}
                 <button
                   type="button"
                   className="ml-2 text-red-500 font-bold"
                   onClick={() =>
-                    updateFormData(
-                      "skills",
-                      formData.skills.filter((s) => s !== skill)
-                    )
+                    updateFormData("skills", formData.skills.filter((s) => s !== skill))
                   }
                 >
                   ×
@@ -292,22 +300,20 @@ const Application = () => {
               </span>
             ))}
           </div>
-          {/* 📝 Cover Letter */}
-          <div>
-            <h2 className=" text-gray-800 mb-4">Cover Letter</h2>
-            <textarea
-              value={formData.coverLetter}
-              onChange={(e) => updateFormData("coverLetter", e.target.value)}
-              rows="6"
-              className="w-full border border-gray-300 rounded p-3"
-              placeholder="Write a brief cover letter about your interest and qualifications..."
-            />
-          </div>
+          <h3 className="text-gray-800 mb-4 mt-4">Cover Letter</h3>
+          <textarea
+            value={formData.coverLetter}
+            onChange={(e) => updateFormData("coverLetter", e.target.value)}
+            rows="6"
+            className="w-full border border-gray-300 rounded p-3"
+            placeholder="Write a brief cover letter about your interest and qualifications..."
+          />
         </div>
       </div>
-      {/* 📎 Resume Upload */}
+ 
+      {/* Resume Upload */}
       <div>
-        <h2 className=" text-gray-800 mb-4">Resume</h2>
+        <h3 className="text-gray-800 mb-4">Resume</h3>
         <input
           type="file"
           accept=".pdf,.doc,.docx"
@@ -316,23 +322,25 @@ const Application = () => {
           required
         />
         {formData.resume && (
-          <p className="text-sm text-green-600 mt-2">
-            Uploaded: {formData.resume.name}
-          </p>
+          <p className="text-sm text-green-600 mt-2">Uploaded: {formData.resume.name}</p>
         )}
       </div>
-
-      {/* ✅ Submit Button */}
+ 
+      {/* Submit */}
       <div className="mt-10 text-center">
+        {loading && <p className="text-blue-600 mb-4">Submitting...</p>}
+        {error && <p className="text-red-600 mb-4">{error}</p>}
+        {success && <p className="text-green-600 mb-4">{success}</p>}
         <button
-          onClick={() => handleSubmit()}
+          type="submit"
+          disabled={loading}
           className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded shadow"
         >
           Submit Application
         </button>
       </div>
-    </div>
+    </form>
   );
 };
-
+ 
 export default Application;

@@ -9,7 +9,8 @@ const path = require("path")
 const Auth = require("./Auth/authHR")
 const Leave = require("./Router/LeaveRouting")
 const ChatBot = require("./Router/ChatbotRouter")
-const Carrer  =require("./Router/CarrerPortal")
+const Carrer  =require("./Router/CarrerPortal");
+const Attendance = require("./Router/AttendanceRouter")
 require("dotenv").config()
 app.use(express.json())
 app.use(cors())
@@ -19,8 +20,8 @@ mongoose.connect(process.env.DATABASE).then(()=>{
     console.error(err);
     
 })
-app.use("/uploads",express.static(path.join(__dirname,"uploads")))
-
+app.use(express.static(path.join(__dirname,"/Helpers/uploads")))
+console.log(path.join(__dirname,"/Helpers/uploads"))
 //Routing
 app.use("/api/HR",HRRouter)
 app.use("/api/contact",ContactRouter)
@@ -29,6 +30,7 @@ app.use("/api/auth",Auth)
 app.use("/api/leave",Leave)
 // app.use("/api/chatbot",ChatBot)
 app.use("/api/carrer-portal",Carrer)
+app.use("/api/attendance",Attendance)
 
 app.listen(5000,()=>{
     console.log("port runing")

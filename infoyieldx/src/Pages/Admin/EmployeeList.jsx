@@ -21,7 +21,7 @@ const EmployeeList = () => {
   const [formData, setFormData] = useState({
     firstName: "", lastName: "", email: "", phone: "",
     dateOfBirth: "", address: "", position: "", department: "",
-    salary: "", startDate: "", emergencyContact: "", password: "", type: "employee"
+    salary: "", startDate: "", emergencyContact: "", password: "", type: "employee",avatar:null
   });
 
 
@@ -211,7 +211,7 @@ if (imageFile) {
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {filteredEmployees.map((emp) => (
           <div key={emp._id} className="border rounded-lg p-4 hover:shadow transition">
-            {emp.image && <img src={emp.image} alt="avatar" className="w-12 h-12 rounded-full object-cover mb-2" />}
+            {emp.avatar && <img src={`http://${emp.avatar}`} alt="avatar" className="w-12 h-12 rounded-full object-cover mb-2" />}
             <div className="flex justify-between items-center mb-2">
               <div>
                 <h2 className="font-bold">{emp.firstname} {emp.lastname}</h2>

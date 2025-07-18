@@ -24,7 +24,6 @@ const HrLogin = () => {
       setHRUID(res.data.id);
       setHrtoken(res.data.token)
       toast.success("Login Successful");
-    
       navigate("/admin");
     } catch (error) {
       console.error("Login error:", error.response?.data?.error || error.message);

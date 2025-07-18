@@ -26,7 +26,8 @@ export default function EmployeeSidebar() {
   };
 
   const handleSignOut = () => {
-    localStorage.removeItem("empToken")
+    localStorage.removeItem("empToken");
+    localStorage.removeItem("empId")
     setShowLayout(true);
     navigate('/');
   };

@@ -36,7 +36,7 @@ const Navbar = () => {
   const toggle = () => {
     setMobview(!mobView);
   };
-  if (!showLayout) return null;
+  // if (!showLayout) return null;
 
   return (
    
@@ -50,26 +50,26 @@ const Navbar = () => {
             <img
               src={logo}
               alt="Logo"
-              className="w-[100px] md:w-[130px] object-cover"
+              className="w-[100px] md:w-[110px] object-cover"
             />
           </div>
           <div className="flex gap-10 max-md:hidden">
             <a href="/" className="hover:text-black">
               Home
             </a>
-            <a href="about" className="hover:text-black">
+            <a href="About" className="hover:text-black">
               About
             </a>
-            <a href="portfolio" className="hover:text-black">
+            <a href="Portfolio" className="hover:text-black">
               Portfolio
             </a>
             <div className="relative group z-50">
-              <a href="ourservice" className="hover:text-black">
+              <a href="OurService" className="hover:text-black">
                 Our Services
               </a>
               <ul className="absolute -z-0 shadow-2xl w-[240px] hidden group-hover:flex bg-white scale-75 text-sm  flex-col gap-5 transform translate-x-2 transition-all text-black py-5 group-hover:scale-110 duration-300 top-[50px] px-5 rounded-lg items-start pointer-events-auto ">
                 <li className="flex gap-3 items-center">
-                  <a href="web-development" className="flex gap-3 items-center">
+                  <a href="Web-Development" className="flex gap-3 items-center">
                     <Code2 />
                     <p>Web Development</p>
                   </a>
@@ -83,16 +83,16 @@ const Navbar = () => {
                 </li>
 
                 <li className="flex gap-3 items-center">
-                  <a href="App-development" className="flex gap-3 items-center">
+                  <a href="app-development" className="flex gap-3 items-center">
                     <Smartphone />
                     <p>Mobile App Development</p>
                   </a>
                 </li>
 
                 <li className="flex gap-3 items-center">
-                  <a href="oracle-ebs" className="flex gap-3 items-center">
+                  <a href="digital-marketing" className="flex gap-3 items-center">
                     <Server />
-                    <p>Oracle E-Business Suite (EBS)</p>
+                    <p>Digital Marketing</p>
                   </a>
                 </li>
 
@@ -105,7 +105,7 @@ const Navbar = () => {
               </ul>
             </div>
 
-            <a href="blogs" className="hover:text-black">
+            <a href="Blogs" className="hover:text-black">
               Blogs
             </a>
             <a href="Career" className="hover:text-black">

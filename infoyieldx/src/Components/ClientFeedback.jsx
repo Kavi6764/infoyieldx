@@ -71,14 +71,14 @@ const ClientFeedback = () => {
                 key={index}
                 className="bg-white p-6 rounded-2xl shadow-md border transform transition duration-300 hover:scale-105 hover:-translate-y-3"
               >
-                <img
+                {/* <img
                   src={client.image}
                   alt={client.name}
                   className="w-16 h-16 rounded-full mx-auto mb-4 object-cover"
-                />
+                /> */}
                 <p className="text-sm text-gray-700 italic mb-4">"{client.feedback}"</p>
                 <h4 className="font-semibold">{client.name}</h4>
-                <p className="text-xs text-gray-500">{client.role}</p>
+                {/* <p className="text-xs text-gray-500">{client.role}</p> */}
               </div>
             ))}
           </motion.div>

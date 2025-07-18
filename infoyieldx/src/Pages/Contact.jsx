@@ -103,8 +103,8 @@ const Contact = () => {
               <option value="">Select a Service</option>
               <option value="web">Web App Development</option>
               <option value="mobile">Mobile App Development</option>
-              <option value="accounting">Accounting Services</option>
-              <option value="oracle-ebs">Oracle EBS</option>
+              <option value="accounting">Accounting</option>
+              <option value="digital-marketing">Digital Marketinf</option>
               <option value="oracle-db">Oracle DB Management</option>
             </select>
 
@@ -160,8 +160,8 @@ const Contact = () => {
             <div className="flex gap-2">
               <IoLocation className="text-blue-600 font-bold md:text-xl text-md" />
               <div>
-                <p className="text-sm">India</p>
-                <p className="text-xs font-medium text-gray-700 leading-tight">
+                <p className="text-md">India</p>
+                <p className="text-sm font-medium text-gray-700 leading-tight">
                   Infoyieldx
                   <br />
                   MGK Complex, No:267,

@@ -6,10 +6,10 @@ import { IoLocation } from 'react-icons/io5'
 import { Appcontext } from '../Context/Context'
 
 const Footer = () => {
-  const {showLayout} = useContext(Appcontext)
-  const hrToken = localStorage.getItem("hrtoken")
-  const EmpToken =localStorage.getItem("empToken")
-  if(!hrToken || !EmpToken ) return null;
+  // const {showLayout} = useContext(Appcontext)
+  // const hrToken = localStorage.getItem("hrtoken")
+  // const EmpToken =localStorage.getItem("empToken")
+  // if(hrToken || EmpToken ) return null;
   return (
     <footer className="w-full bottom-0 bg-black text-white py-8 mt-auto">
       <div className="container mx-auto px-4">
@@ -35,7 +35,7 @@ const Footer = () => {
               <li><a href="/account-serviec" className="hover:text-white">Accounting Services</a></li>
               <li><a href="/web-development" className="hover:text-white">Web Development</a></li>
               <li><a href="/mobile-app-development" className="hover:text-white">Mobile App Development</a></li>
-              <li><a href="/Oracle-E-Business" className="hover:text-white">Oracle E-Business Suite (EBS)</a></li>
+              <li><a href="/digital-marketing" className="hover:text-white">Digital Marketing </a></li>
               <li><a href="/Oracle-Database" className="hover:text-white">Oracle DataBase Mangagement</a></li>
             </ul>
           </div>
@@ -76,7 +76,7 @@ const Footer = () => {
             </div>
           </div>
 <div>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60144.49186159031!2d77.67419706964218!3d11.346623292616323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96f46762f4671%3A0xd97da6e3d9c7f75e!2sErode%2C%20Tamil%20Nadu!5e1!3m2!1sen!2sin!4v1749492849488!5m2!1sen!2sin"  className='rounded-md' referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60144.49186159031!2d77.67419706964218!3d11.346623292616323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96f46762f4671%3A0xd97da6e3d9c7f75e!2sErode%2C%20Tamil%20Nadu!5e1!3m2!1sen!2sin!4v1749492849488!5m2!1sen!2sin"  className='rounded-md md:w-96 h-44' referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
           {/* Copyright */}
           <div className="w-full mt-8 pt-4 border-t border-gray-600 text-center text-sm">

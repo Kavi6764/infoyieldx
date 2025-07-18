@@ -1,105 +1,121 @@
+import axios from "axios";
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const projectData = [
-  {
-    id: 1,
-    name: "SmartDesk",
-    category: "Web App Development",
-    description: "Task management for remote teams with real-time dashboards.",
-    tech: "React, Node.js, MongoDB",
-    image: "/images/smartdesk.png",
-  },
-  {
-    id: 2,
-    name: "EcomEase",
-    category: "Web App Development",
-    description: "eCommerce platform with CRM and inventory control.",
-    tech: "Next.js, Express, MySQL",
-    image: "/images/ecomease.png",
-  },
-  {
-    id: 3,
-    name: "MedSync",
-    category: "Mobile App Development",
-    description: "Health appointment and virtual consultation app.",
-    tech: "Flutter, Firebase",
-    image: "/images/medsync.png",
-  },
-  {
-    id: 4,
-    name: "EduTrack",
-    category: "Mobile App Development",
-    description: "App for students and tutors with class and attendance tracking.",
-    tech: "React Native, Supabase",
-    image: "/images/edutrack.png",
-  },
-  {
-    id: 5,
-    name: "FinLedger",
-    category: "Accounting Services",
-    description: "Cloud-based accounting portal with invoicing and reports.",
-    tech: "Laravel, PostgreSQL",
-    image: "/images/finledger.png",
-  },
-  {
-    id: 6,
-    name: "TaxMate",
-    category: "Accounting Services",
-    description: "Tax filing and compliance dashboard with real-time sync.",
-    tech: "Vue.js, Django",
-    image: "/images/taxmate.png",
-  },
-  {
-    id: 7,
-    name: "ERP Customization",
-    category: "Oracle EBS",
-    description: "Customized EBS for procurement and inventory workflows.",
-    tech: "Oracle EBS R12, PL/SQL",
-    image: "/images/erp-custom.png",
-  },
-  {
-    id: 8,
-    name: "HRMS Integration",
-    category: "Oracle EBS",
-    description: "Integrated Oracle HRMS with external payroll systems.",
-    tech: "Oracle HRMS, APIs",
-    image: "/images/hrms.png",
-  },
-  {
-    id: 9,
-    name: "DBGuard",
-    category: "Oracle Database",
-    description: "HA Oracle DB setup with automated backups and recovery.",
-    tech: "Oracle 19c, RMAN",
-    image: "/images/dbguard.png",
-  },
-  {
-    id: 10,
-    name: "Retail DB Optimization",
-    category: "Oracle Database",
-    description: "Performance tuning with indexing and query optimization.",
-    tech: "Oracle 12c, PL/SQL",
-    image: "/images/retail-db.png",
-  },
-];
+// const projectData = [
+//   {
+//     id: 1,
+//     name: "SmartDesk",
+//     category: "Web App Development",
+//     description: "Task management for remote teams with real-time dashboards.",
+//     tech: "React, Node.js, MongoDB",
+//     image: "/images/smartdesk.png",
+//   },
+//   {
+//     id: 2,
+//     name: "EcomEase",
+//     category: "Web App Development",
+//     description: "eCommerce platform with CRM and inventory control.",
+//     tech: "Next.js, Express, MySQL",
+//     image: "/images/ecomease.png",
+//   },
+//   {
+//     id: 3,
+//     name: "MedSync",
+//     category: "Mobile App Development",
+//     description: "Health appointment and virtual consultation app.",
+//     tech: "Flutter, Firebase",
+//     image: "/images/medsync.png",
+//   },
+//   {
+//     id: 4,
+//     name: "EduTrack",
+//     category: "Mobile App Development",
+//     description: "App for students and tutors with class and attendance tracking.",
+//     tech: "React Native, Supabase",
+//     image: "/images/edutrack.png",
+//   },
+//   {
+//     id: 5,
+//     name: "FinLedger",
+//     category: "Accounting Services",
+//     description: "Cloud-based accounting portal with invoicing and reports.",
+//     tech: "Laravel, PostgreSQL",
+//     image: "/images/finledger.png",
+//   },
+//   {
+//     id: 6,
+//     name: "TaxMate",
+//     category: "Accounting Services",
+//     description: "Tax filing and compliance dashboard with real-time sync.",
+//     tech: "Vue.js, Django",
+//     image: "/images/taxmate.png",
+//   },
+//   {
+//     id: 7,
+//     name: "ERP Customization",
+//     category: "Oracle EBS",
+//     description: "Customized EBS for procurement and inventory workflows.",
+//     tech: "Oracle EBS R12, PL/SQL",
+//     image: "/images/erp-custom.png",
+//   },
+//   {
+//     id: 8,
+//     name: "HRMS Integration",
+//     category: "Oracle EBS",
+//     description: "Integrated Oracle HRMS with external payroll systems.",
+//     tech: "Oracle HRMS, APIs",
+//     image: "/images/hrms.png",
+//   },
+//   {
+//     id: 9,
+//     name: "DBGuard",
+//     category: "Oracle Database",
+//     description: "HA Oracle DB setup with automated backups and recovery.",
+//     tech: "Oracle 19c, RMAN",
+//     image: "/images/dbguard.png",
+//   },
+//   {
+//     id: 10,
+//     name: "Retail DB Optimization",
+//     category: "Oracle Database",
+//     description: "Performance tuning with indexing and query optimization.",
+//     tech: "Oracle 12c, PL/SQL",
+//     image: "/images/retail-db.png",
+//   },
+// ];
 
 const categories = [
   "All",
-  "Web App Development",
-  "Mobile App Development",
-  "Accounting Services",
-  "Oracle EBS",
+  "Web Development",
+  "App Development",
+  "Accounts",
+  "Digital-Marketing",
   "Oracle Database",
 ];
 
 const OurProjects = () => {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [Project,setProjects] = useState([])
+  
+const filteredProjects = Project.filter((project) => {
+  const matchCategory =
+    activeCategory === "All" || project.department === activeCategory;
+  const matchStatus = project.status === "Completed"; // or use a variable if needed
 
-  const filteredProjects =
-    activeCategory === "All"
-      ? projectData
-      : projectData.filter((project) => project.category === activeCategory);
+  return matchCategory && matchStatus;
+});
+
+
+  const GetData = async ()=>{
+    const res =await axios.get("http://localhost:5000/api/HR/get-portfolio")
+    console.log("res",res.data.portfolio)
+    setProjects(res.data.portfolio)
+  }    
+
+  useEffect(()=>{
+               GetData();
+  },[])    
 
   return (
     <section className="py-16 px-6  bg-[#E5E4E2]/10 text-center">
@@ -142,15 +158,15 @@ const OurProjects = () => {
             viewport={{ once: true }}
           >
             <img
-              src={project.image}
+              src={`http://${project.imageUrl}`}
               alt={project.name}
               className="w-full h-48 object-cover"
             />
             <div className="p-6 text-left">
-              <h3 className="text-xl font-bold mb-2">{project.name}</h3>
+              <h3 className="text-xl font-bold mb-2">{project.title}</h3>
               <p className="text-sm text-gray-700 mb-3">{project.description}</p>
               <span className="text-xs inline-block bg-[#e5e4e2] text-[#4b0082] px-3 py-1 rounded-full">
-                {project.tech}
+                {project.technologies}
               </span>
             </div>
           </motion.div>

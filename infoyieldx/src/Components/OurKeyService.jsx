@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { LuSmartphone, LuDatabase, LuDatabaseZap, LuCode, LuNewspaper } from 'react-icons/lu';
 import { motion } from 'framer-motion';
+import { MdOutlineCampaign } from 'react-icons/md';
 
 const OurKeyService = () => {
   const services = [
@@ -26,13 +27,14 @@ const OurKeyService = () => {
       description: "Launch responsive and intuitive mobile apps that delight users and support your digital goals.",
       link: "app-development",
     },
-    {
-      id: 4,
-      icon: LuDatabaseZap,
-      title: "Oracle E-Business Suite (EBS)",
-      description: "Implement and optimize Oracle EBS for enterprise-wide process automation and integration.",
-      link: "oracle-ebs",
-    },
+  {
+  id: 4,
+  icon: MdOutlineCampaign,
+  title: "Digital Marketing",
+  description: "Enhance brand visibility and customer engagement through tailored SEO, SEM, and social media strategies.",
+  link: "digital-marketing",
+},
+
     {
       id: 5,
       icon: LuDatabase,

@@ -197,7 +197,7 @@ const Blog = () => {
   const categories = [
     "All",
     "Web Development",
-    "Oracle EBS",
+    "Digital Marketing",
     "Mobile Development",
     "Database",
     "Accounting",

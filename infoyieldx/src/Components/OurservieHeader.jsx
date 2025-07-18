@@ -25,7 +25,7 @@ const OurservieHeader = () => {
             <MdStarRate />
           </div>
           <p className="text-slate-700 text-center">
-            Trusted by 10,000+ clients worldwide
+            Trusted by 150+ clients
           </p>
         </motion.div>
 

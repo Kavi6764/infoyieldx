@@ -83,25 +83,25 @@ const sendCredentialsEmail = async ({ firstname, email, password }) => {
     console.error("Failed to send credentials:", err);
   }
 };
-const sendEmployeeMailReg = async ({ firstName, email, position, lastName, invoicePath }) => {
+const sendEmployeeMailReg = async ({ data, mergedPdfPath }) => {
   const mailOptions = {
-    from: `"InfoyieldX Team" <${process.env.MAIL_TO}>`,
-    to: email,
+    from: `"InfoyieldX Team" <${process.env.MAIL_USER}>`,
+    to: data.email,
     subject: "Application Received",
-    html: `<p>Dear ${firstName},</p>
-      <p>Thank you for applying for the <strong>${position}</strong> position. Our team will review your application and get back to you soon.</p>
+    html: `<p>Dear ${data.firstName},</p>
+      <p>Thank you for applying for the <strong>${data.position}</strong> position. Our team will review your application and get back to you soon.</p>
       <p>Regards,<br>HR Team</p>`,
   };
 
   const sendtoHR = {
-    from: `${firstName} <${email}>`,
+    from: `${data.firstName} <${data.email}>`,
     to: process.env.MAIL_TO,
-    subject: `New Application: ${firstName} ${lastName}`,
-    text: "Please find the application invoice attached.",
+    subject: `New Application: ${data.firstName} ${data.lastName || ""} for ${data.position}`,
+    text: "Please find the application attached.",
     attachments: [
       {
-        filename: "Application-Invoice.pdf",
-        path: invoicePath,
+        filename: `Application_${data.firstName}.pdf`,
+        path: mergedPdfPath,
         contentType: "application/pdf"
       }
     ]
@@ -110,8 +110,9 @@ const sendEmployeeMailReg = async ({ firstName, email, position, lastName, invoi
   try {
     await transporter.sendMail(sendtoHR);
     await transporter.sendMail(mailOptions);
+    console.log("📧 Emails sent successfully.");
   } catch (err) {
-    console.error("Failed to send emails:", err);
+    console.error("❌ Failed to send emails:", err);
   }
 };
 

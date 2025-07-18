@@ -69,7 +69,7 @@ const Hero = () => {
             className="flex justify-between md:w-[30vw] p-2 items-center "
           >
             <div className="flex flex-col items-center">
-              <h2>500+</h2>
+              <h2>150+</h2>
               <p className="text-slate-500 text-xs md:text-md">
                 Projects Delivered
               </p>

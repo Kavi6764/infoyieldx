@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { User, Mail, Phone, MapPin, Camera, Lock } from 'lucide-react';
 import axios from 'axios';
+import { Appcontext } from '../../Context/Context';
+import { toast } from 'react-toastify';
 
 const Myprofile = () => {
+  const{empId} = useContext(Appcontext);
   const [profileData, setProfileData] = useState({
     // firstName: 'John',
     // lastName: 'Doe',
@@ -57,15 +60,29 @@ useEffect(() => {
     }
   };
 
-  const handlePasswordSubmit = (e) => {
-    e.preventDefault();
-    if (passwords.new !== passwords.confirm) {
-      alert("New passwords do not match!");
-      return;
-    }
-    alert("Password changed successfully (mock)");
+
+const handlePasswordSubmit = async (e) => {
+  e.preventDefault();
+
+  if (passwords.new !== passwords.confirm) {
+    toast.error("New passwords do not match!");
+    return;
+  }
+
+  try {
+    const res = await axios.put("http://localhost:5000/api/employee/change-password", {
+      currentPassword: passwords.current,
+      newPassword: passwords.new,
+      userId: empId
+    });
+
+    toast.success(res.data.message || "Password updated successfully");
     setPasswords({ current: '', new: '', confirm: '' });
-  };
+  } catch (err) {
+    console.error(err);
+    toast.error(err.response?.data?.message || "Failed to change password");
+  }
+};
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
@@ -82,7 +99,7 @@ useEffect(() => {
           <div className="flex items-center space-x-4">
             <div className="relative">
               <img
-                src={profileData.profileImage}
+                src={`http://${profileData.avatar}`}
                 className="w-20 h-20 rounded-full object-cover"
                 alt="Profile"
               />

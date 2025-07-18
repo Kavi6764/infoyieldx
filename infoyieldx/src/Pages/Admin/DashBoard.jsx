@@ -28,12 +28,7 @@ const cards = [
     icon: Calendar,
     iconColor: "bg-yellow-100 text-yellow-600",
   },
-  {
-    title: "Reports Generated",
-    value: 18,
-    icon: BarChart3,
-    iconColor: "bg-red-100 text-red-600",
-  },
+
 ];
 
 const recentProjects = [
@@ -62,18 +57,9 @@ const recentProjects = [
   },
 ];
 
-const recentActivities = [
-  {
-    name: "Sarah Johnson",
-    action: "Completed onboarding",
-    time: "2 hours ago",
-  },
-  { name: "Mike Chen", action: "Submitted timesheet", time: "4 hours ago" },
-  { name: "Emily Davis", action: "Updated profile", time: "6 hours ago" },
-  { name: "Alex Rodriguez", action: "Requested time off", time: "1 day ago" },
-];
 
-const Dashboard = () => {
+
+const DashBoard = () => {
   return (
     <div className="space-y-6 max-w-7xl mx-auto py-5 md:w-full w-screen min-h-screen">
       <div className="flex items-center justify-between p-2">
@@ -93,7 +79,7 @@ const Dashboard = () => {
         </div>
       </div>
       {/* Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
         {cards.map(({ title, value, icon: Icon, iconColor }, i) => (
           <div
             key={i}
@@ -111,11 +97,11 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-6 mx-auto">
+      <div className="grid  grid-cols-1 gap-6 mx-auto">
         {/* Recent Projects */}
         <MyProjectsCart data={recentProjects} />
 
-        {/* Recent Activity */}
+        {/* Recent Activity
         <div className="bg-white border mx-auto md:w-full rounded-lg shadow-sm p-5 ">
           <h2 className="text-lg font-semibold mb-2">Recent Activity</h2>
           <p className="text-sm text-gray-500 mb-4">
@@ -135,7 +121,7 @@ const Dashboard = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Quick Actions */}
@@ -148,11 +134,11 @@ const Dashboard = () => {
           </button>
           <button className="text-left px-4 py-3 border rounded hover:bg-gray-50 flex items-center gap-3">
             <Clock className="w-4 h-4 text-gray-600" />
-            Manage Timesheets
+            Leave
           </button>
           <button className="text-left px-4 py-3 border rounded hover:bg-gray-50 flex items-center gap-3">
             <TrendingUp className="w-4 h-4 text-gray-600" />
-            Performance Reviews
+             Blog
           </button>
         </div>
       </div>
@@ -160,4 +146,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashBoard;

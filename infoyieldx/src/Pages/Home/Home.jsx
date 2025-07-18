@@ -7,6 +7,7 @@ import GetinTouch from "../../Components/GetinTouch";
 import TrustedCompanies from "../../Components/Trustedompanies";
 import "./Home.css";
 import Desgin from "../../Components/Desgin";
+import PeopleBehindUs from "../../Components/PeopleBindus";
 
 const Home = () => {
   return (
@@ -16,7 +17,8 @@ const Home = () => {
       <Aboutus />
       <OurKeyService />
       <GetinTouch />
-      <TrustedCompanies />
+      {/* <TrustedCompanies /> */}
+      <PeopleBehindUs/>
     </div>
   );
 };

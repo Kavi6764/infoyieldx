@@ -2,7 +2,7 @@ import React from "react";
 import { IoCalculatorOutline } from "react-icons/io5";
 import { MdOutlineCode } from "react-icons/md";
 import { CiMobile3 } from "react-icons/ci";
-import { FaServer, FaDatabase } from "react-icons/fa";
+import { FaServer, FaDatabase ,FaBullhorn} from "react-icons/fa";
 import { BsCheck2Circle } from "react-icons/bs";
 import { motion } from "framer-motion";
 
@@ -11,7 +11,7 @@ const OurCoreService = () => {
     {
       title: "Accounting Services",
       description:
-        "Comprehensive financial management and accounting solutions for your business",
+        "Complete financial and accounting solutions for your business",
       features: [
         "Bookkeeping & financial records",
         "Tax preparation & filing",
@@ -51,29 +51,29 @@ const OurCoreService = () => {
       icon: <CiMobile3 className="w-8 h-8 text-primary" />,
     },
     {
-      title: "Oracle EBS Development",
-      description:
-        "Oracle E-Business Suite customization and implementation services",
-      features: [
-        "EBS implementation",
-        "Custom module development",
-        "System integration",
-        "Performance optimization",
-        "User training & support",
-      ],
-     
-      icon: <FaServer className="w-8 h-8 text-primary" />,
-    },
+    title: "Digital Marketing",
+    description:
+      "Boost your online presence with tailored digital marketing strategies",
+    features: [
+      "Search engine optimization (SEO)",
+      "Social media marketing",
+      "Content marketing",
+      "Google Ads",
+      "Email marketing campaigns",
+    ],
+    icon: <FaBullhorn className="w-8 h-8 text-primary" />,
+  },
     {
       title: "Oracle Database Development",
       description:
         "Oracle database design, development, and optimization services",
       features: [
-        "Database design & architecture",
+        "Database design",
         "Performance tuning",
-        "PL/SQL development",
+        "MYSQL development",
         "Data migration",
         "Backup & recovery solutions",
+        "Data Upgration"
       ],
  
       icon: <FaDatabase className="w-8 h-8 text-primary" />,
